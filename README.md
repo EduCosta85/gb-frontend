@@ -13,6 +13,8 @@
 ### Demonstração:
 -  http://gbchallenge-eduardocosta.surge.sh/
 
+[![Edit EduCosta85/gb-frontend](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/EduCosta85/gb-frontend/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
+
 ### Instalação e utilização:
 - Instalação das dependências: ```npm install```
 - Iniciar aplicação: ```npm start```
