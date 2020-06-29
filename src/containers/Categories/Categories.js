@@ -1,32 +1,50 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {getAllCategories, getJoke, setLoadingOn} from '../../actions/chuckNorrisApi'
-import {CategoriesWrapper} from './styled'
-import {List, ListItem, ListItemText} from '@material-ui/core';
+import {Typography, ExpansionPanel, ExpansionPanelSummary, ListItem} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function Categories(props) {
 
     useEffect(() => {
         props.getCategories()
     }, [props])
+    
+    const [expanded, setExpanded] = useState(true);
 
     const handleWithJoke = (item) => {
+        handleExpand()
         props.setLoadingOn()
         props.getJoke(item)
     }
+    const handleExpand = () => {
+        if (window.matchMedia("(min-width:770px)").matches) {
+            setExpanded(true);
+        } else {
+            setExpanded(!expanded);
+        }
+    };
 
     return (
-        <CategoriesWrapper> {
+        <ExpansionPanel 
+            
+            expanded={expanded}
+            onClick={ () => { handleExpand() } }>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                <Typography color='secondary'>Categories</Typography>
+            </ExpansionPanelSummary>
+            {
             props.CategoriesList && props.CategoriesList.map((item, index) => {
                 return (
-                    <List component="nav" key={index} onClick={() =>{handleWithJoke(item)}}>
-                        <ListItem button>
-                            <ListItemText primary={item.charAt(0).toUpperCase() + item.slice(1)}/>
-                        </ListItem>
-                    </List>
+                    <ListItem button
+                        key={index}
+                        onClick={ () => { handleWithJoke(item) } }>
+                        <Typography color='secondary'>
+                            { item.charAt(0).toUpperCase() + item.slice(1) } </Typography>
+                    </ListItem>
                 )
             })
-        } </CategoriesWrapper>
+        } </ExpansionPanel>
     );
 }
 
@@ -36,7 +54,6 @@ const mapDispatchToProps = dispatch => ({
     getCategories: () => dispatch(getAllCategories()),
     getJoke: (data) => dispatch(getJoke(data)),
     setLoadingOn: () => dispatch(setLoadingOn())
-    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
