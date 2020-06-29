@@ -7,7 +7,6 @@ import {WrapperDivMain, WrapperDivItens, WrapperSection, DivBG} from './styled'
 import {Typography} from '@material-ui/core';
 
 function Main(props) {
-
     return (
         <DivBG>
             <WrapperDivMain>
@@ -33,7 +32,6 @@ function Main(props) {
 }
 
 const mapStateToProps = state => ({Joke: state.chuck.joke});
-
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

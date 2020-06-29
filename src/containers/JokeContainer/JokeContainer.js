@@ -6,7 +6,6 @@ import {CategoryWrapper, ActionsWrapper, JokeWrapper, PaperStyled} from './style
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 function JokeContainer(props) {
-
     const handleWithJoke = (item) => {
         props.setLoadingOn()
         props.getJoke(item)
@@ -40,7 +39,6 @@ function JokeContainer(props) {
     );
 }
 const mapStateToProps = state => ({});
-
 const mapDispatchToProps = dispatch => ({
     getJoke: (data) => dispatch(getJoke(data)),
     setLoadingOn: () => dispatch(setLoadingOn())

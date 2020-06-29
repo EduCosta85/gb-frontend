@@ -27,7 +27,6 @@ function Categories(props) {
 
     return (
         <ExpansionPanel 
-            
             expanded={expanded}
             onClick={ () => { handleExpand() } }>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
@@ -49,7 +48,6 @@ function Categories(props) {
 }
 
 const mapStateToProps = state => ({CategoriesList: state.chuck.categories});
-
 const mapDispatchToProps = dispatch => ({
     getCategories: () => dispatch(getAllCategories()),
     getJoke: (data) => dispatch(getJoke(data)),
